@@ -14,10 +14,10 @@ export class Vendor{
     @Column({type:'simple-array'})
     service_offered:string[]
 
-  @Column({ type: 'float', default: 0 }) // ✅ Default rating = 0
+  @Column({ type: 'float', default: 0 })
   rating: number;
 
-  @Column({ type: 'int', default: 0 })   // ✅ Default SLA hours = 0
+  @Column({ type: 'int', default: 0 })   
   response_sla_hours: number;
     
 

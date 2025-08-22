@@ -18,7 +18,7 @@ dotenv.config();
 @Module({
   imports: [
 
-    MongooseModule.forRoot(process.env.MONGO_STRING_CNNECTION as string),
+  MongooseModule.forRoot(process.env.MONGO_STRING_CNNECTION as string),
    TypeOrmModule.forRoot({
   type: 'mysql',
   host: 'localhost',
