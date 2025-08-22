@@ -15,4 +15,11 @@ export class ClientsService {
         const new_client=await this.ClientsRepo.create(client);
         return await this.ClientsRepo.save(new_client)
     }
+    async findClient(id:number):Promise<Clients>{
+        const Client=await this.ClientsRepo.findOne({where:{id}})
+        if(!Client){
+            throw new BadRequestException("this user not exist");
+        }
+        return Client;
+    }
 }
