@@ -26,8 +26,8 @@ dotenv.config();
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE,
-  entities: [__dirname + '/**/*.entity{.ts,.js}'],
-  // autoLoadEntities: true,
+  // entities: [__dirname + '/**/*.entity{.ts,.js}'],
+  autoLoadEntities: true,
   synchronize: false,   
 }),
 

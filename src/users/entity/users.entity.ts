@@ -1,5 +1,5 @@
 import { User_enum } from "src/auth/dto/user.enum";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity({name:"Users"})
 export class Users{
@@ -9,7 +9,7 @@ export class Users{
     @Column({type:String})
     name:string
 
-    @Column({type:String})
+    @Column({type:String,unique:true})
     email:string
 
     @Column({type:String})
