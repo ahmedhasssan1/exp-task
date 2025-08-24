@@ -1,7 +1,8 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { ProjectDto } from './dto/project_dto';
 import { NewServiceDto } from './dto/addNewService.dto';
+import { Vendor } from 'src/vendor/entity/vendor.entity';
 
 @Controller('projects')
 export class ProjectsController {
@@ -14,5 +15,9 @@ export class ProjectsController {
   @Post('/new-service')
   async newService(@Body() service:NewServiceDto){
     return await this.projectsService.addNewServiceToProject(service)
+  }
+  @Get('/vendors-matching-project')
+  async matchingVendorsFroProject(@Query('queryID')queryID:number){
+    return await this.projectsService.findVendorForProject(queryID);
   }
 }

@@ -17,5 +17,6 @@ dotenv.config();
   ],
   controllers: [VendorController],
   providers: [VendorService],
+  exports:[VendorService]
 })
 export class VendorModule {}
