@@ -17,7 +17,11 @@ export class ProjectsController {
     return await this.projectsService.addNewServiceToProject(service)
   }
   @Get('/vendors-matching-project')
-  async matchingVendorsFroProject(@Query('queryID')queryID:number){
-    return await this.projectsService.findVendorForProject(queryID);
+  async matchingVendorsFroProject(@Query('project-id')queryID:number){
+    return await this.projectsService.findTopVendorsForProject(queryID);
+  }
+  @Get('/project-Id')
+  async getProjectId(@Query('projectId')projectId:number){
+    return await this.projectsService.findProjectById(projectId)
   }
 }

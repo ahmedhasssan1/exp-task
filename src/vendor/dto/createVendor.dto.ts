@@ -13,8 +13,4 @@ export class VendorDto{
     service_offered:string[]
 
 
-
-  
-
-
 }
