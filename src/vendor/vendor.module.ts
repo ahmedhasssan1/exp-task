@@ -10,7 +10,7 @@ import { ProjectsModule } from 'src/projects/projects.module';
 dotenv.config();
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Vendor]),
+    TypeOrmModule.forFeature([Vendor]),MatchesModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1d' },

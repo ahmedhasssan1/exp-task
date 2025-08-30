@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { VendorService } from './vendor.service';
 import { VendorDto } from './dto/createVendor.dto';
 import { RolesGuard } from './guard/rolesGuard';
@@ -9,7 +9,11 @@ export class VendorController {
 
   @UseGuards(RolesGuard)
   @Post('/create-vendor')
-  async createVendor(@Body() vendordto:VendorDto){
-    return await this.vendorService.createVendor(vendordto)
+  async createVendor(@Body() vendordto: VendorDto) {
+    return await this.vendorService.createVendor(vendordto);
+  }
+  @Get('/top-vendors/:country')
+  async getTopVendors(@Param('country') country: string) {
+    return this.vendorService.getTopVendorsByCountry(country);
   }
 }
