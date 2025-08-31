@@ -18,11 +18,16 @@ export class ProjectsService {
   ) {}
 
   async createProject(project: ProjectDto): Promise<Projects> {
-    const client_exist = await this.clientsService.findClient(project.client_id);
+    const client_exist = await this.clientsService.findClient(project.clientId);
+
     const project_exist = this.ProjectRepo.create({
-      ...project,
+      country: project.country,
+      service_nedded: project.service_nedded,
+      budget: project.budget,
+      status: project.status,
       client: client_exist,
     });
+
     return await this.ProjectRepo.save(project_exist);
   }
 
@@ -40,7 +45,9 @@ export class ProjectsService {
   }
 
   async findProjectById(ProjectId: number): Promise<Projects> {
-    const project = await this.ProjectRepo.findOne({ where: { id: ProjectId } });
+    const project = await this.ProjectRepo.findOne({
+      where: { id: ProjectId },
+    });
 
     if (!project) {
       throw new NotFoundException('There is no project with this ID');
@@ -49,17 +56,13 @@ export class ProjectsService {
   }
 
   async findTopVendorsForProject(projectId: number) {
-    // 1. Find project
     const project = await this.findProjectById(projectId);
 
-    // 2. Get needed services
     const neededServices = project.service_nedded ?? [];
     if (neededServices.length === 0) return [];
 
-    // 3. Fetch all vendors
     const vendors = await this.VendorRepo.find();
 
-    // 4. Calculate scores
     const scoredVendors = vendors
       .map((vendor) => {
         const vendorServices = Array.isArray(vendor.service_offered)
@@ -91,7 +94,6 @@ export class ProjectsService {
       .filter((vendor) => vendor !== null)
       .sort((a, b) => (b as any).score - (a as any).score);
 
-    // 5. Save matches
     for (const v of scoredVendors) {
       await this.matchesService.createOrUpdateMatch({
         projectId,

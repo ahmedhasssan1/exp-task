@@ -22,4 +22,8 @@ export class DocumnetController {
     return this.documnetService.getByProject(projectId);
   }
 
+  @Get()
+  async getAllResearchDocuments() {
+    return this.documnetService.getAllDocuments();
+  }
 } 

@@ -16,4 +16,8 @@ export class VendorController {
   async getTopVendors(@Param('country') country: string) {
     return this.vendorService.getTopVendorsByCountry(country);
   }
+  @Get()
+  async allvendors(){
+    return this.vendorService.getAllVendors();
+  }
 }

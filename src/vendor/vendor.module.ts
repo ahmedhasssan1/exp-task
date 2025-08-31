@@ -1,16 +1,16 @@
-import { forwardRef, Module } from '@nestjs/common';
+import {  Module } from '@nestjs/common';
 import { VendorService } from './vendor.service';
 import { VendorController } from './vendor.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Vendor } from './entity/vendor.entity';
 import { JwtModule } from '@nestjs/jwt';
 import * as dotenv from 'dotenv';
-import { MatchesModule } from 'src/matches/matches.module';
-import { ProjectsModule } from 'src/projects/projects.module';
+import { DocumnetModule } from 'src/documnet/documnet.module';
+import { Matches } from 'src/matches/entity/matches.entity';
 dotenv.config();
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Vendor]),MatchesModule,
+    TypeOrmModule.forFeature([Vendor,Matches]),DocumnetModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1d' },

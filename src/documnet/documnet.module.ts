@@ -10,5 +10,6 @@ import { ProjectsModule } from 'src/projects/projects.module';
   imports:[MongooseModule.forFeature([{name:Research.name,schema:ResearchSchema}]),ProjectsModule],
   controllers: [DocumnetController],
   providers: [DocumnetService],
+  exports:[DocumnetService]
 })
 export class DocumnetModule {}

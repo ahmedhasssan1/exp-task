@@ -9,7 +9,7 @@ import { Vendor } from 'src/vendor/entity/vendor.entity';
 import { MatchesModule } from 'src/matches/matches.module';
 
   @Module({
-    imports:[TypeOrmModule.forFeature([Projects,Vendor]),ClientsModule, VendorModule,MatchesModule],
+    imports:[TypeOrmModule.forFeature([Projects,Vendor]),ClientsModule,MatchesModule],
     controllers: [ProjectsController],
     providers: [ProjectsService],
     exports:[ProjectsService]

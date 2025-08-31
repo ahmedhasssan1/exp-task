@@ -1,20 +1,20 @@
-import { ArrayNotEmpty, IsArray, IsNumber, IsString } from "class-validator"
+import { ArrayNotEmpty, IsArray, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-export class ProjectDto{
-    @IsNumber()
-    client_id:number
-    
-    @IsString()
-    country:string
+export class ProjectDto {
+  @IsNotEmpty()
+  @IsNumber()
+  clientId: number;
+  @IsString()
+  country: string;
 
-    @IsArray()
-    @ArrayNotEmpty()
-    @IsString({each:true})
-    service_nedded:string[]
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsString({ each: true })
+  service_nedded: string[];
 
-    @IsNumber()
-    budget:number
+  @IsNumber()
+  budget: number;
 
-    @IsString()
-    status:string
+  @IsString()
+  status: string;
 }
