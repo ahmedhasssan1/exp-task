@@ -1,5 +1,7 @@
 import {
   BadRequestException,
+  forwardRef,
+  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -7,15 +9,16 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Vendor } from './entity/vendor.entity';
 import { Repository } from 'typeorm';
 import { VendorDto } from './dto/createVendor.dto';
-import { Matches } from 'src/matches/entity/matches.entity';
 import { DocumnetService } from 'src/documnet/documnet.service';
+import { MatchesService } from 'src/matches/matches.service';
 
 @Injectable()
 export class VendorService {
   constructor(
     @InjectRepository(Vendor) private vendorRepo: Repository<Vendor>,
-    @InjectRepository(Matches) private matchRepo: Repository<Matches>,
-    private readonly docsService: DocumnetService, // ✅ Inject DocumentsService properly
+    @Inject(forwardRef(()=>MatchesService))
+    private matchService:MatchesService,
+    private  docsService: DocumnetService, 
   ) {}
 
   async createVendor(vendorDto: VendorDto): Promise<Vendor> {
@@ -60,8 +63,9 @@ export class VendorService {
     `;
 
     // Get top vendors from MySQL
-    const topVendors = await this.matchRepo.query(query, [country]);
-
+    const topVendors = await this.matchService.vendorQuery(query, [country]);
+    console.log('debugging ',topVendors);
+    
     return this.docsService.addResearchDocsCount([topVendors]);
   }
 

@@ -4,8 +4,12 @@ export class ProjectDto {
   @IsNotEmpty()
   @IsNumber()
   clientId: number;
+  
   @IsString()
   country: string;
+
+  @IsString()
+  name:string
 
   @IsArray()
   @ArrayNotEmpty()

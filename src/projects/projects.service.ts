@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { forwardRef, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Projects } from './entity/projects.entity';
 import { Repository } from 'typeorm';
@@ -13,6 +13,7 @@ export class ProjectsService {
   constructor(
     @InjectRepository(Projects) private ProjectRepo: Repository<Projects>,
     @InjectRepository(Vendor) private VendorRepo: Repository<Vendor>,
+    @Inject(forwardRef(()=>MatchesService))
     private readonly matchesService: MatchesService,
     private readonly clientsService: ClientsService,
   ) {}
@@ -25,6 +26,7 @@ export class ProjectsService {
       service_nedded: project.service_nedded,
       budget: project.budget,
       status: project.status,
+      name:project.name,
       client: client_exist,
     });
 
@@ -52,6 +54,7 @@ export class ProjectsService {
     if (!project) {
       throw new NotFoundException('There is no project with this ID');
     }
+ 
     return project;
   }
 

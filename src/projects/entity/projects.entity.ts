@@ -13,6 +13,9 @@ export class Projects{
     @Column({type:String})
     country:string
 
+    @Column({type:String})
+    name:string
+
     @Column({type:'simple-array'})
     service_nedded:string[]
 

@@ -1,15 +1,14 @@
-  import {  Module } from '@nestjs/common';
+  import {  forwardRef, Module } from '@nestjs/common';
   import { ProjectsService } from './projects.service';
   import { ProjectsController } from './projects.controller';
   import { TypeOrmModule } from '@nestjs/typeorm';
   import { Projects } from './entity/projects.entity';
   import { ClientsModule } from 'src/clients/clients.module';
-  import { VendorModule } from 'src/vendor/vendor.module';
 import { Vendor } from 'src/vendor/entity/vendor.entity';
 import { MatchesModule } from 'src/matches/matches.module';
 
   @Module({
-    imports:[TypeOrmModule.forFeature([Projects,Vendor]),ClientsModule,MatchesModule],
+    imports:[TypeOrmModule.forFeature([Projects,Vendor]),ClientsModule,forwardRef(()=> MatchesModule)],
     controllers: [ProjectsController],
     providers: [ProjectsService],
     exports:[ProjectsService]
