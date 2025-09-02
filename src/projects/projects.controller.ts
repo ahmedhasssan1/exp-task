@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { ProjectDto } from './dto/project_dto';
 import { NewServiceDto } from './dto/addNewService.dto';
 import { Vendor } from 'src/vendor/entity/vendor.entity';
+import { UpdateDto } from './dto/updateDto';
 
 @Controller('projects')
 export class ProjectsController {
@@ -23,5 +24,9 @@ export class ProjectsController {
   @Get('/project-Id')
   async getProjectId(@Query('projectId')projectId:number){
     return await this.projectsService.findProjectById(projectId)
+  }
+  @Patch('updated-project-status')
+  async updateStatus(@Body()statusDto:UpdateDto){
+    return this.projectsService.updateProject(statusDto);
   }
 }

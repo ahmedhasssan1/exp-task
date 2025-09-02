@@ -39,8 +39,8 @@ export class MatchesService {
       vendor_id: { id: matchData.vendorId },
     });
      await this.newEmailforNewMatch(
-      matchData.projectId,
       matchData.vendorId,
+      matchData.projectId,
     );
 
     return await this.matchesRepo.save(match);
@@ -65,4 +65,6 @@ export class MatchesService {
     const top_vendor = await this.matchesRepo.query(query, [country]);
     return top_vendor;
   }
+
+ 
 }

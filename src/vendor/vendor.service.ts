@@ -16,9 +16,9 @@ import { MatchesService } from 'src/matches/matches.service';
 export class VendorService {
   constructor(
     @InjectRepository(Vendor) private vendorRepo: Repository<Vendor>,
-    @Inject(forwardRef(()=>MatchesService))
-    private matchService:MatchesService,
-    private  docsService: DocumnetService, 
+    @Inject(forwardRef(() => MatchesService))
+    private matchService: MatchesService,
+    private docsService: DocumnetService,
   ) {}
 
   async createVendor(vendorDto: VendorDto): Promise<Vendor> {
@@ -32,7 +32,7 @@ export class VendorService {
     const newVendor = this.vendorRepo.create({
       ...vendorDto,
       rating: 0,
-      response_sla_hours: 0,
+      response_sla_hours: 24,
     });
 
     return await this.vendorRepo.save(newVendor);
@@ -64,8 +64,8 @@ export class VendorService {
 
     // Get top vendors from MySQL
     const topVendors = await this.matchService.vendorQuery(query, [country]);
-    console.log('debugging ',topVendors);
-    
+    console.log('debugging ', topVendors);
+
     return this.docsService.addResearchDocsCount([topVendors]);
   }
 
@@ -75,5 +75,35 @@ export class VendorService {
       throw new NotFoundException('No vendors found');
     }
     return vendors;
+  }
+  async flagExpiredVendors() {
+    const vendors = await this.vendorRepo.find();
+    const now = new Date();
+
+    for (const vendor of vendors) {
+      if (!vendor.created_at) {
+        console.warn(`Vendor with ID ${vendor.id} has no created_at date`);
+        continue;
+      }
+
+      if (
+        vendor.response_sla_hours === null ||
+        vendor.response_sla_hours === undefined ||
+        isNaN(vendor.response_sla_hours)
+      ) {
+        console.warn(`Vendor with ID ${vendor.id} has no valid SLA hours`);
+        continue;
+      }
+
+      const createdAt = new Date(vendor.created_at);
+      const expirationTime = new Date(
+        createdAt.getTime() + vendor.response_sla_hours * 60 * 60 * 1000,
+      );
+
+      if (now > expirationTime) {
+        vendor.sla_expired=true;
+        console.log(`⚠️ Vendor with ID ${vendor.id} has expired`);
+      }
+    }
   }
 }

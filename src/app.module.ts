@@ -18,6 +18,7 @@ import { Clients } from './clients/entity/clients.entity';
 import { BullModule } from '@nestjs/bullmq';
 import { SchedulerModule } from './scheduler/scheduler.module';
 import * as dotenv from 'dotenv';
+import { ScheduleModule } from '@nestjs/schedule';
 dotenv.config();
 
 @Module({
@@ -28,6 +29,7 @@ dotenv.config();
         port:Number(process.env.REDIS_PORT)  
       }
     }),
+    ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal:true
     }),

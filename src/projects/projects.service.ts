@@ -1,4 +1,10 @@
-import { forwardRef, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  forwardRef,
+  Inject,
+  Injectable,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Projects } from './entity/projects.entity';
 import { Repository } from 'typeorm';
@@ -7,13 +13,17 @@ import { ClientsService } from 'src/clients/clients.service';
 import { NewServiceDto } from './dto/addNewService.dto';
 import { Vendor } from 'src/vendor/entity/vendor.entity';
 import { MatchesService } from 'src/matches/matches.service';
+import { VendorService } from 'src/vendor/vendor.service';
+import { UpdateDto } from './dto/updateDto';
 
 @Injectable()
 export class ProjectsService {
+  private readonly logger = new Logger(VendorService.name);
+
   constructor(
     @InjectRepository(Projects) private ProjectRepo: Repository<Projects>,
     @InjectRepository(Vendor) private VendorRepo: Repository<Vendor>,
-    @Inject(forwardRef(()=>MatchesService))
+    @Inject(forwardRef(() => MatchesService))
     private readonly matchesService: MatchesService,
     private readonly clientsService: ClientsService,
   ) {}
@@ -26,7 +36,7 @@ export class ProjectsService {
       service_nedded: project.service_nedded,
       budget: project.budget,
       status: project.status,
-      name:project.name,
+      name: project.name,
       client: client_exist,
     });
 
@@ -54,7 +64,7 @@ export class ProjectsService {
     if (!project) {
       throw new NotFoundException('There is no project with this ID');
     }
- 
+
     return project;
   }
 
@@ -66,7 +76,17 @@ export class ProjectsService {
 
     const vendors = await this.VendorRepo.find();
 
-    const scoredVendors = vendors
+    //  Filter vendors supporting the project's country
+    const filterCountry = vendors.filter((vendor) =>
+      vendor.countries_supported.includes(project.country),
+    );
+
+    // If no vendors support this country, return empty
+    if (filterCountry.length === 0) {
+      return [];
+    }
+
+    const scoredVendors = filterCountry
       .map((vendor) => {
         const vendorServices = Array.isArray(vendor.service_offered)
           ? vendor.service_offered.map((s) => s.trim())
@@ -76,17 +96,11 @@ export class ProjectsService {
           neededServices.includes(s),
         ).length;
 
-        const inSameCountry = Array.isArray(vendor.countries_supported)
-          ? vendor.countries_supported.includes(project.country)
-          : false;
-
-        if (!inSameCountry) return null; // Skip vendors outside the country
-
         const score =
           servicesOverlap * 2 +
           (vendor.rating ?? 0) +
           (vendor.response_sla_hours ?? 0) +
-          (inSameCountry ? 5 : 0);
+          5;
 
         return {
           ...vendor,
@@ -94,17 +108,45 @@ export class ProjectsService {
           vendorId: vendor.id,
         };
       })
-      .filter((vendor) => vendor !== null)
-      .sort((a, b) => (b as any).score - (a as any).score);
+      .sort((a, b) => b.score - a.score);
 
     for (const v of scoredVendors) {
       await this.matchesService.createOrUpdateMatch({
         projectId,
-        vendorId: v!.vendorId,
-        score: v!.score,
+        vendorId: v.vendorId,
+        score: v.score,
       });
     }
 
     return scoredVendors;
+  }
+  async filterActiveProjects() {
+    this.logger.log(`Fetching active projects...`);
+    const projects = await this.ProjectRepo.find({
+      where: { status: 'active' },
+      select: ['id', 'name', 'status'], // ✅ Ensure 'name' is fetched
+    });
+
+    console.log('Active Projects:', projects);
+
+    for (const project of projects) {
+      console.log(
+        `🔄 Refreshing matches for project: ${project.name} Project'}`,
+      );
+    }
+  }
+  async updateProject(updatedto: UpdateDto): Promise<Projects | null> {
+    const project = await this.ProjectRepo.findOne({
+      where: { id: updatedto.id },
+    });
+
+    if (!project) {
+      throw new NotFoundException('This project no longer exists');
+    }
+
+    await this.ProjectRepo.update(updatedto.id, {
+      ...updatedto,
+    });
+    return await this.ProjectRepo.findOne({ where: { id: updatedto.id } });
   }
 }
