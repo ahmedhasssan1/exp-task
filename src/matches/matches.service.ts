@@ -32,9 +32,10 @@ export class MatchesService {
       match.score = matchData.score;
       return await this.matchesRepo.save(match);
     }
-
+    
     match = this.matchesRepo.create({
       score: matchData.score,
+      
       project_id: { id: matchData.projectId },
       vendor_id: { id: matchData.vendorId },
     });
@@ -48,6 +49,8 @@ export class MatchesService {
 
   async newEmailforNewMatch(vendorId: number, projectId: number) {
     const vendor = await this.vendorService.findVendorById(vendorId);
+    await this.vendorService.saveVendor(vendor);
+    console.log(vendor.rating)
     const project = await this.projectService.findProjectById(projectId);
 
     const payload = {

@@ -102,8 +102,13 @@ export class VendorService {
 
       if (now > expirationTime) {
         vendor.sla_expired=true;
+        vendor.rating=-2;
+        await this.vendorRepo.save(vendor);
         console.log(`⚠️ Vendor with ID ${vendor.id} has expired`);
       }
     }
+  }
+  async saveVendor(vendor:Vendor):Promise<void>{
+     await this.vendorRepo.save(vendor);
   }
 }
