@@ -85,7 +85,7 @@ export class ProjectsService {
     if (filterCountry.length === 0) {
       return [];
     }
-    
+
     const scoredVendors = filterCountry
       .map((vendor) => {
         const vendorServices = Array.isArray(vendor.service_offered)
@@ -101,7 +101,7 @@ export class ProjectsService {
           (vendor.rating ?? 0) +
           (vendor.response_sla_hours ?? 0) +
           5;
-        vendor.rating+=3;
+        vendor.rating += 3;
         return {
           ...vendor,
           score,
@@ -111,8 +111,8 @@ export class ProjectsService {
       .sort((a, b) => b.score - a.score);
 
     for (const v of scoredVendors) {
-      v.rating+=3;
-      await this.VendorRepo.update(v.id,{rating:v.rating});
+      v.rating += 3;
+      await this.VendorRepo.update(v.id, { rating: v.rating });
       await this.matchesService.createOrUpdateMatch({
         projectId,
         vendorId: v.vendorId,
@@ -133,7 +133,7 @@ export class ProjectsService {
 
     for (const project of projects) {
       console.log(
-        `🔄 Refreshing matches for project: ${project.name} Project'}`,
+        `Refreshing matches for project: ${project.name} Project'}`,
       );
     }
   }

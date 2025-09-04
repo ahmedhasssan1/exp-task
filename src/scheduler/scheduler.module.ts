@@ -3,15 +3,15 @@ import { SchedulerService } from './scheduler.service';
 import { BullModule } from '@nestjs/bullmq';
 import { VendorModule } from 'src/vendor/vendor.module';
 import { ProjectsModule } from 'src/projects/projects.module';
-import { matchesScheduler } from './scheduler.processor';
+import { MatchesScheduler } from './scheduler.processor';
 
 
 @Module({
   imports:[BullModule.registerQueue({
+    name:'match-queue',
     configKey:'main-queue',
-    name:'match-queue'
   }),VendorModule,ProjectsModule],
 
-  providers: [SchedulerService,matchesScheduler],
+  providers: [SchedulerService,MatchesScheduler],
 })
 export class SchedulerModule {}

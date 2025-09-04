@@ -5,22 +5,37 @@ import { ProjectsService } from 'src/projects/projects.service';
 import { VendorService } from 'src/vendor/vendor.service';
 
 @Processor('match-queue')
-export class matchesScheduler extends WorkerHost {
-  private readonly logger = new Logger(matchesScheduler.name);
+export class MatchesScheduler extends WorkerHost {
+  private readonly logger = new Logger(MatchesScheduler.name);
+  private isRunning = false; 
 
   constructor(
-    private vendorService: VendorService,
-    private projectSerivce: ProjectsService,
+    private readonly vendorService: VendorService,
+    private readonly projectService: ProjectsService,
   ) {
     super();
   }
-  async process(job: any): Promise<any> {
-    this.logger.log(`job started ${job.name}`);
-    if (job.name == 'daily-task') {
-      await this.vendorService.flagExpiredVendors();
 
-      await this.projectSerivce.filterActiveProjects();
-      console.log('🔄 Running Daily Scheduler Job...');
+  async process(job: Job<any>): Promise<void> {
+    if (this.isRunning) {
+      this.logger.warn(`Skipping ${job.name} — previous job still running.`);
+      return;
+    }
+
+    this.isRunning = true; // Lock the processor
+    this.logger.log(`Job started: ${job.name}`);
+
+    try {
+      if (job.name === 'daily-task') {
+        await this.vendorService.flagExpiredVendors();
+        await this.projectService.filterActiveProjects();
+        this.logger.log(' Daily Scheduler Job Executed Successfully!');
+      }
+    } catch (error) {
+      this.logger.error(`Job failed: ${job.name}`, error.message);
+      throw error;
+    } finally {
+      this.isRunning = false; // Always unlock after finishing
     }
   }
 }
