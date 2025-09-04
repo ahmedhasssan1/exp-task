@@ -97,3 +97,41 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+
+# 🌎 Global Expansion Management API
+
+**Global Expansion Management API** is a **NestJS-based backend** designed for **Expander360**, a platform that helps businesses manage global expansion projects.  
+The system connects **clients**, **vendors**, **projects**, **unstructured research documents**, and **analytics** across **MySQL** and **MongoDB**, supporting **JWT authentication**, **vendor matching**, **cross-database analytics**, and **scheduled jobs**.
+
+---
+
+## **📌 Features**
+- 🔐 **JWT Authentication & RBAC** → Roles: `client` & `admin`
+- 🗄 **Relational + Non-Relational DB Integration** → MySQL + MongoDB
+- 📁 **Research Document Management** → Upload, search, and fetch reports
+- 🤝 **Project-Vendor Matching Algorithm** → Based on country, services, rating, and SLA
+- 📊 **Analytics API** → Combines MySQL + MongoDB insights
+- 📬 **Email Notifications** → When new matches are generated
+- ⏳ **Scheduled Jobs** → Auto-refresh matches & flag expired SLAs
+- 🐳 **Dockerized Setup** → MySQL, MongoDB, Redis, and API containers
+- 🚀 **Cloud Ready** → Deploy to **Render**, **Railway**, or **AWS Free Tier**
+
+---
+
+## **🛠 Tech Stack**
+
+| Layer        | Technology |
+|-------------|-----------|
+| Framework   | NestJS (TypeScript) |
+| Auth        | JWT + Role Guards |
+| Relational DB | MySQL (TypeORM) |
+| NoSQL DB    | MongoDB (Mongoose) |
+| Cache / Queues | Redis + BullMQ |
+| File Storage | MongoDB GridFS |
+| Scheduling  | NestJS Scheduler / BullMQ |
+| Deployment  | Docker + Docker Compose |
+
+---
+
+## **📂 Project Structure**

@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { VendorService } from './vendor.service';
 import { VendorDto } from './dto/createVendor.dto';
-import { RolesGuard } from './guard/rolesGuard';
+import { RolesGuard } from '../common/guard/rolesGuard';
 
 @Controller('vendor')
 export class VendorController {
