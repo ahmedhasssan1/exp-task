@@ -1,0 +1,84 @@
+version: '3.9'
+
+services:
+  # =========================
+  # NestJS Application
+  # =========================
+  app:
+    build: .
+    container_name: exp-container
+    restart: always
+    ports:
+      - "5000:3000"
+    env_file:
+      - .env
+    depends_on:
+    - mysql
+    - redis
+    - mongo
+    networks:
+      - app_network
+
+  # =========================
+  # MySQL Database
+  # =========================
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      retries: 5
+      timeout: 5s
+    networks:
+      - app_network
+
+    
+
+  # =========================
+  # Redis Cache
+  # =========================
+  redis:
+    image: redis:7-alpine
+    container_name: redis-container
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - app_network
+
+  # =========================
+  # MongoDB Database
+  # =========================
+  mongo:
+    image: mongo:6.0
+    container_name: mongo-container
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app_network
+
+# =========================
+# Networks
+# =========================
+networks:
+  app_network:
+
+# =========================
+# Volumes
+# =========================
+volumes:
+  mysql_data:
+  mongo_data:

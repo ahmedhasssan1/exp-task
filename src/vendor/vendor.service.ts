@@ -64,7 +64,6 @@ export class VendorService {
 
     // Get top vendors from MySQL
     const topVendors = await this.matchService.vendorQuery(query, [country]);
-    console.log('debugging ', topVendors);
 
     return this.docsService.addResearchDocsCount([topVendors]);
   }
@@ -104,7 +103,6 @@ export class VendorService {
         vendor.sla_expired=true;
         vendor.rating=-2;
         await this.vendorRepo.save(vendor);
-        console.log(`Vendor with ID ${vendor.id} has expired`);
       }
     }
   }
