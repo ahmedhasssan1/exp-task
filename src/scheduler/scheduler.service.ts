@@ -1,37 +1,24 @@
-import { InjectQueue } from '@nestjs/bullmq';
 import { Injectable, Logger } from '@nestjs/common';
+import { Cron } from '@nestjs/schedule';
+import { InjectQueue } from '@nestjs/bullmq';
 import { Queue } from 'bullmq';
 
 @Injectable()
 export class SchedulerService {
   private readonly logger = new Logger(SchedulerService.name);
 
-  constructor(@InjectQueue('match-queue') private  matchQueue: Queue) {}
+  constructor(@InjectQueue('match-queue') private readonly matchQueue: Queue) {}
 
-  async scheduleDailyJob() {
-    // First, remove any existing repeatable jobs to avoid duplicates on restarts
-    const repeatableJobs = await this.matchQueue.getRepeatableJobs();
-    for (const job of repeatableJobs) {
-      this.logger.warn(`🗑 Removed old repeatable job: ${job.key}`);
+  // 🕒 Runs every day at 5:26 PM Cairo time
+  @Cron('0 0 12 * * *', { timeZone: 'Africa/Cairo' })
+  async handleDailyTask() {
+    this.logger.log('⏳ Adding daily-task job to queue...');
+
+    try {
+      await this.matchQueue.add('daily-task', {}, { removeOnComplete: true, removeOnFail: 100 });
+      this.logger.log('Daily job added to BullMQ queue successfully!');
+    } catch (error) {
+      this.logger.error(' Failed to add job to queue!', error.stack);
     }
-
-    // Now schedule the new daily job
-    await this.matchQueue.upsertJobScheduler(
-      'daily-task',
-      {
-        pattern:'0 15 10 * * *'},
-      {
-        name: 'daily-task',
-        data: { foo: 'bar' },
-         opts: {
-          backoff: 3,
-          attempts: 5,
-          removeOnFail: 1000,
-      },
-    }
-    )
-  
-
-    this.logger.log(' Daily Job Scheduled Successfully!');
   }
 }

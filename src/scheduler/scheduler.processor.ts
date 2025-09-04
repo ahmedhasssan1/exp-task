@@ -7,7 +7,7 @@ import { VendorService } from 'src/vendor/vendor.service';
 @Processor('match-queue')
 export class MatchesScheduler extends WorkerHost {
   private readonly logger = new Logger(MatchesScheduler.name);
-  private isRunning = false; 
+  private isRunning = false; // Prevents duplicate execution
 
   constructor(
     private readonly vendorService: VendorService,
@@ -22,7 +22,7 @@ export class MatchesScheduler extends WorkerHost {
       return;
     }
 
-    this.isRunning = true; // Lock the processor
+    this.isRunning = true;
     this.logger.log(`Job started: ${job.name}`);
 
     try {
@@ -32,10 +32,9 @@ export class MatchesScheduler extends WorkerHost {
         this.logger.log(' Daily Scheduler Job Executed Successfully!');
       }
     } catch (error) {
-      this.logger.error(`Job failed: ${job.name}`, error.message);
-      throw error;
+      this.logger.error(`Job failed: ${job.name}`, error.stack);
     } finally {
-      this.isRunning = false; // Always unlock after finishing
+      this.isRunning = false; // Always unlock the job processor
     }
   }
 }

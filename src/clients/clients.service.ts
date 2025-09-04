@@ -12,6 +12,7 @@ export class ClientsService {
         if(client_exist){
             throw new BadRequestException("this email already exist");
         }
+        
         const new_client=await this.ClientsRepo.create(client);
         return await this.ClientsRepo.save(new_client)
     }

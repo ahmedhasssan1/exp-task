@@ -81,7 +81,6 @@ export class ProjectsService {
       vendor.countries_supported.includes(project.country),
     );
 
-    // If no vendors support this country, return empty
     if (filterCountry.length === 0) {
       return [];
     }
@@ -126,7 +125,7 @@ export class ProjectsService {
     this.logger.log(`Fetching active projects...`);
     const projects = await this.ProjectRepo.find({
       where: { status: 'active' },
-      select: ['id', 'name', 'status'], // ✅ Ensure 'name' is fetched
+      select: ['id', 'name', 'status'], // Ensure 'name' is fetched
     });
 
     console.log('Active Projects:', projects);

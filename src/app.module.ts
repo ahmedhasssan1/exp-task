@@ -23,6 +23,7 @@ dotenv.config();
 
 @Module({
   imports: [
+    
     BullModule.forRoot('main-queue',{
       connection:{
         host: '192.168.116.128',
