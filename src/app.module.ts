@@ -35,7 +35,7 @@ dotenv.config();
   MongooseModule.forRoot(process.env.MONGO_STRING_CNNECTION as string),
    TypeOrmModule.forRoot({
   type: 'mysql',
-  host: 'localhost',
+  host: 'exp-task-production.up.railway.app',
   port: 3306,
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
