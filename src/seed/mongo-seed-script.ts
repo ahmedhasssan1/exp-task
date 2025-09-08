@@ -28,13 +28,6 @@ async function seedResearch() {
           'Deep dive into e-commerce data analytics for boosting conversion rates and improving ROI.',
         tags: ['E-commerce', 'Analytics', 'Data Science'],
       },
-      {
-        projectId: 3,
-        title: 'NLP Chatbot Research',
-        content:
-          'Building a chatbot system using Natural Language Processing for customer support automation.',
-        tags: ['NLP', 'Chatbot', 'Automation'],
-      },
     ]);
 
     console.log('Research documents seeded successfully!');
