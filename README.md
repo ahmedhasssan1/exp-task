@@ -1,98 +1,112 @@
+<div align="center">
+  <a href="https://nestjs.com/" target="_blank">
+    <img src="https://nestjs.com/img/logo-small.svg" width="120" alt="NestJS Logo" />
+  </a>
+</div>
+
+<h1 align="center">Global Expansion Management API</h1>
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  A specialized <strong>NestJS backend</strong> crafted for <strong>Expander360</strong>, streamlining global business ventures. This system orchestrates clients, service providers, ventures, research insights, and data analysis, harmonizing MySQL and MongoDB.
 </p>
 
 <p align="center">
-  A progressive <strong>NestJS-based backend</strong> designed for <strong>Expander360</strong>, a platform that helps businesses manage global expansion projects.
-  The system connects clients, vendors, projects, unstructured research documents, and analytics across MySQL and MongoDB.
-</p>
-
-<p align="center">
-  <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-  <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-  <a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-  <img src="https://img.shields.io/badge/Status-Production%20Ready-green.svg" alt="Production Ready" />
+  <a href="[Your NPM Package Link]" target="_blank">
+    <img src="https://img.shields.io/npm/v/[Your NPM Package Name].svg" alt="NPM Version" />
+  </a>
+  <a href="[Your License Link]" target="_blank">
+    <img src="https://img.shields.io/npm/l/[Your NPM Package Name].svg" alt="License" />
+  </a>
+   <img src="https://img.shields.io/badge/Status-Under%20Active%20Development-yellow" alt="Development Status" />
 </p>
 
 ---
 
-## 📌 Features
-- 🔐 **JWT Authentication & RBAC** → Roles: `client` & `admin`
-- 🗄 **Relational + Non-Relational DB Integration** → MySQL + MongoDB
-- 📁 **Research Document Management** → Upload, search, and fetch reports
-- 🤝 **Project-Vendor Matching Algorithm** → Based on country, services, rating, and SLA
-- 📊 **Analytics API** → Combines MySQL + MongoDB insights
-- 📬 **Email Notifications** → When new matches are generated
-- ⏳ **Scheduled Jobs** → Auto-refresh matches & flag expired SLAs
-- 🐳 **Dockerized Setup** → MySQL, MongoDB, Redis, and API containers
-- 🚀 **Cloud Ready** → Deploy to **Render**, **Railway**, or **AWS Free Tier**
+## ✨ Key Functionalities
+
+*   **Secure Access**: JSON Web Token (JWT) authentication with role-based authorization.
+*   **Data Harmony**: Integrates relational (MySQL) and document (MongoDB) databases.
+*   **Intelligent Matching**: Connects ventures with service providers based on geography, expertise, success metrics and response time agreements.
+*   **Knowledge Hub**: Manages research documents using MongoDB GridFS.
+*   **Real-time Updates**: Sends email notifications for new connections and agreement status.
+*   **Automated Processes**: Schedules tasks for agreement monitoring and connection optimization.
+*   **Containerized Deployment**: Ready for Docker, simplifying setup.
 
 ---
 
-## 🛠 Tech Stack
+## 💻 Core Technologies
 
-| Layer        | Technology          |
-|-------------|---------------------|
-| Framework   | NestJS (TypeScript) |
-| Auth        | JWT + Role Guards   |
-| Relational DB | MySQL (TypeORM)   |
-| NoSQL DB    | MongoDB (Mongoose)  |
-| Cache/Queue | Redis + BullMQ      |
-| File Storage| MongoDB GridFS      |
-| Scheduling  | NestJS Scheduler    |
-| Deployment  | Docker + Railway    |
+| Component      | Technology Stack            |
+| :------------- | :-------------------------- |
+| Backend        | NestJS (TypeScript)         |
+| Authorization  | JWT, Custom Role Guards     |
+| Data Storage   | MySQL (TypeORM), MongoDB (Mongoose) |
+| Queueing       | Redis, BullMQ               |
+| File System    | MongoDB GridFS              |
+| Task Scheduler | NestJS Task Scheduling      |
+| Containerization | Docker                      |
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Setup Instructions
 
-### **Prerequisites**
-- Node.js (v18+)
-- Docker & Docker Compose
-- MySQL v8+
-- MongoDB v5+
-- Redis v6+
+### Prerequisites
 
-### **🐳 Docker Setup (Recommended)**
-```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/global-expansion-api.git
-cd global-expansion-api
+*   Node.js (v18 or higher)
+*   Docker & Docker Compose
+*   MySQL (v8+)
+*   MongoDB (v5+)
+*   Redis (v6+)
 
-# 2. Configure environment variables
-cp .env.example .env
-# Update .env with your database URLs & secrets
+### Local Installation
 
-# 3. Start containers
-docker-compose up -d
+1.  **Clone:**
 
-# 4. App will be available at http://localhost:3000
+    ```bash
+    git clone [repository URL]
+    cd [project directory]
+    ```
 
-# 1. Install dependencies
-npm install
+2.  **Configuration:**
 
-# 2. Run migrations & seed data
-npm run migration:run
-npm run seed
+    ```bash
+    cp .env.example .env
+    # Update .env with your specific settings
+    ```
 
-# 3. Start development server
-npm run start:dev
+3.  **Dockerized Start:**
 
+    ```bash
+    docker-compose up -d
+    ```
 
+    *or for local development:*
+
+    ```bash
+    npm install
+    npm run migration:run
+    npm run start:dev
+    ```
+
+---
+
+## 🗂️ Project Structure
+
+```text
 src/
+├── admin/         # Admin-specific features
+├── auth/          # Authentication and authorization
+├── users/         # User management
+├── clients/       # Client-related code
+├── common/        # Reusable utilities
+├── projects/      # Venture management
+├── vendors/       # Service provider management
+├── matches/       # Connection algorithms
+├── documents/     # Document handling
+├── scheduler/     # Scheduled processes
+├── email/         # Email communication
+└── database/      # Database setup
 
-├── admin/  
-├── auth/              # Authentication module
-├── users/             # User management
-├── clients/           # Client profiles
-├── common/            #common and can be use all over the oriject
-├── projects/          # Project management
-├── vendors/           # Vendor management
-├── matches/           # Vendor matching algorithm
-├── documents/         # Document management (MongoDB)
-├── scheduler/         # Scheduled jobs
-├── email/             # Email notifications
-└── database/          # TypeORM & Mongoose configs
 
 
 erDiagram
@@ -101,7 +115,6 @@ erDiagram
         string company_name
         string contact_email
     }
-
     PROJECTS {
         int id PK
         int client_id FK
@@ -110,7 +123,6 @@ erDiagram
         decimal budget
         enum status
     }
-
     VENDORS {
         int id PK
         string name
@@ -119,7 +131,6 @@ erDiagram
         decimal rating
         int response_sla_hours
     }
-
     MATCHES {
         int id PK
         int project_id FK
@@ -127,7 +138,6 @@ erDiagram
         decimal score
         datetime created_at
     }
-
-    CLIENTS ||--o{ PROJECTS : owns
-    PROJECTS ||--o{ MATCHES : has
-    VENDORS ||--o{ MATCHES : matches
+    CLIENTS ||--o{ PROJECTS : "owns"
+    PROJECTS ||--o{ MATCHES : "has"
+    VENDORS ||--o{ MATCHES : "matches"
