@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { ProjectDto } from './dto/project_dto';
 import { NewServiceDto } from './dto/addNewService.dto';
@@ -17,8 +17,8 @@ export class ProjectsController {
   async newService(@Body() service:NewServiceDto){
     return await this.projectsService.addNewServiceToProject(service)
   }
-  @Get('/vendors-matching-project')
-  async matchingVendorsFroProject(@Query('project-id')queryID:number){
+  @Get('/:id/matches/rebuild')
+  async matchingVendorsFroProject(@Param('id',ParseIntPipe)queryID:number){
     return await this.projectsService.findTopVendorsForProject(queryID);
   }
   @Get('/project-Id')

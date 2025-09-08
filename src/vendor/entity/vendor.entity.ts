@@ -1,4 +1,9 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'Vendor' })
 export class Vendor {
@@ -17,12 +22,12 @@ export class Vendor {
   @Column({ type: 'float', default: 0 })
   rating: number;
 
-  @Column({ type: 'int', default: 24})
+  @Column({ type: 'int', default: 24 })
   response_sla_hours: number;
-  
+
   @Column({ type: 'boolean', default: false })
   sla_expired: boolean;
-  
-    @CreateDateColumn({type:'timestamp'})
-    created_at:Date
+
+  @CreateDateColumn({ type: 'timestamp' })
+  created_at: Date;
 }

@@ -12,7 +12,7 @@ export class VendorController {
   async createVendor(@Body() vendordto: VendorDto) {
     return await this.vendorService.createVendor(vendordto);
   }
-  @Get('/top-vendors/:country')
+  @Get('/analytics/top-vendors/:country')
   async getTopVendors(@Param('country') country: string) {
     return this.vendorService.getTopVendorsByCountry(country);
   }

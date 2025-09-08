@@ -133,5 +133,8 @@ The system connects **clients**, **vendors**, **projects**, **unstructured resea
 | Deployment  | Docker + Docker Compose |
 
 ---
+### 🔍 Database Indexing
+
+To optimize vendor matching queries, make sure to create proper indexes
 
 ## **📂 Project Structure**
