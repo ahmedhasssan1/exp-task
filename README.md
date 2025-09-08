@@ -132,7 +132,9 @@ curl -X POST http://localhost:3000/projects/create-projects \
 
 ### to run mongo-seed script
 
+```bash
 npx ts-node src/seed/mongo-seed.ts
+```
 
 # Generate vendor matches
 
