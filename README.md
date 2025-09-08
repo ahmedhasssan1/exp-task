@@ -133,40 +133,6 @@ erDiagram
 
 ### MongoDB (Document Data)
 
-json
-// Research Documents Collection
-{
-"\_id": "ObjectId",
-"project_id": "string",
-"title": "string",
-"document_type": "market_research | competitor_analysis | regulatory",
-"content": "string",
-"metadata": {
-"country": "string",
-"industry": "string",
-"tags": ["string"],
-"source": "string"
-},
-"file_id": "GridFS_ObjectId",
-"created_at": "Date",
-"updated_at": "Date"
-}
-
-// Analytics Events Collection
-{
-"\_id": "ObjectId",
-"project_id": "string",
-"event_type": "match_generated | vendor_contacted | project_milestone",
-"data": {
-"vendor_id": "string",
-"match_score": "number",
-"milestone": "string",
-"metrics": {}
-},
-"timestamp": "Date",
-"user_id": "string"
-}
-
 ### 🔍 Database Indexing To optimize vendor matching queries, create these indexes:
 
 sql
@@ -203,20 +169,6 @@ Vendor offers: Germany, [Legal, Marketing, Finance]
 • SLA: 0.80 (fast response)
 
 Final Score: 82.5%
---- ## 🔧 Environment Variables ### Required Configuration
-env
-
-# Database Configuration
-
-DATABASE_URL="mysql://user:password@localhost:3306/expansion_db"
-MONGODB_URI="mongodb://localhost:27017/expansion_docs"
-REDIS_URL="redis://localhost:6379"
-
-# JWT Configuration
-
-JWT_SECRET="your-strong-secret-key"
-JWT_EXPIRES_IN="7d"
-JWT_REFRESH_SECRET="your-refresh-secret"
 JWT_REFRESH_EXPIRES_IN="30d"
 
 # Email Configuration (Optional)
@@ -231,14 +183,6 @@ SMTP_FROM="noreply@expander360.com"
 
 MAX_FILE_SIZE="10MB"
 ALLOWED_FILE_TYPES="pdf,doc,docx,txt,csv,xlsx"
-
-# Application Configuration
-
-NODE_ENV="development"
-PORT="3000"
-API_PREFIX="api/v1"
-
-# Matching Algorithm Configuration
 
 MATCHING_THRESHOLD="0.6"
 MAX_MATCHES_PER_PROJECT="10"
