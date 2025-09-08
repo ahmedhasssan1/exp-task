@@ -139,5 +139,34 @@ npx ts-node src/seed/mongo-seed.ts
 # Generate vendor matches
 
 curl -X POST http://localhost:3000/:id/matches/rebuild \
- -H "Authorization: Bearer YOUR_JWT_TOKEN"
---- ## 🤝 Contributing 1. Fork the repository 2. Create a feature branch (git checkout -b feature/amazing-feature) 3. Commit your changes (git commit -m 'Add amazing feature') 4. Push to the branch (git push origin feature/amazing-feature) 5. Open a Pull Request ### Development Guidelines - Follow TypeScript best practices - Write unit tests for new features - Update documentation for API changes - Use conventional commit messages - Ensure all tests pass before submitting PR --- ## 📄 License This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. --- ## 📞 Support - **Author**: [Your Name](https://github.com/your-username) - **Website**: [https://expander360.com](https://expander360.com) - **Email**: [support@expander360.com](mailto:support@expander360.com) - **Documentation**: [API Docs](https://your-api-docs.com) --- ## 🙏 Acknowledgments - [NestJS](https://nestjs.com/) - Progressive Node.js framework - [TypeORM](https://typeorm.io/) - Amazing ORM for TypeScript - [Mongoose](https://mongoosejs.com/) - MongoDB object modeling - [BullMQ](https://bullmq.io/) - Premium Queue package --- <p align="center">
+
+
+## 🤝 Contributing
+
+We welcome contributions to enhance this project! Please follow these steps:
+
+1.  **Fork** the repository.
+2.  Create a **feature branch** with a descriptive name (e.g., `feature/new-api-endpoint`).
+3.  **Commit** your changes with clear, concise messages.
+4.  **Push** your branch to your forked repository.
+5.  Submit a **pull request** to the main branch of this repository.
+
+### Development Standards
+
+*   Adhere to **TypeScript best practices** for code quality and maintainability.
+*   Maintain up-to-date **documentation** for any API modifications.
+*   Use **conventional commit messages** for clarity and automation.
+*   Ensure **all tests pass** before submitting a pull request.
+
+---
+
+## 🙏 Acknowledgments
+
+We extend our sincere gratitude to the following projects and communities that have made this project possible:
+
+*   **NestJS:** A progressive Node.js framework for building efficient, scalable, and reliable server-side applications.
+*   **TypeORM:** An Object-Relational Mapper (ORM) for TypeScript and JavaScript that simplifies database interactions.
+*   **Mongoose:** An elegant MongoDB object modeling tool designed to work in an asynchronous environment.
+*   **BullMQ:** A robust and efficient queue system for Node.js, providing advanced features for background processing.
+
+---
