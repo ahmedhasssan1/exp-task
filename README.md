@@ -360,32 +360,6 @@ Final Score: 82.5%
 
 ---
 
-## 🔧 Environment Variables
-
-### Required Configuration
-
-```env
-# Database Configuration
-DATABASE_URL="mysql://user:password@localhost:3306/expansion_db"
-MONGODB_URI="mongodb://localhost:27017/expansion_docs"
-REDIS_URL="redis://localhost:6379"
-
-# JWT Configuration
-JWT_SECRET="your-strong-secret-key"
-JWT_EXPIRES_IN="7d"
-JWT_REFRESH_SECRET="your-refresh-secret"
-JWT_REFRESH_EXPIRES_IN="30d"
-
-# Email Configuration (Optional)
-SMTP_HOST="smtp.example.com"
-SMTP_PORT="587"
-SMTP_USER="your-email@example.com"
-SMTP_PASS="your-password"
-SMTP_FROM="noreply@expander360.com"
-
-# File Upload Configuration
-MAX_FILE_SIZE="10MB"
-ALLOWED_FILE_TYPES="pdf,doc,docx,txt,csv,xlsx"
 
 # Application Configuration
 NODE_ENV="development"
@@ -402,78 +376,6 @@ QUEUE_DEFAULT_JOB_OPTIONS="{\"removeOnComplete\":100,\"removeOnFail\":50}"
 ```
 
 ---
-
-## 🐳 Docker Configuration
-
-### docker-compose.yml
-
-```yaml
-version: '3.8'
-
-services:
-  api:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-      - DATABASE_URL=mysql://root:password@mysql:3306/expansion_db
-      - MONGODB_URI=mongodb://mongodb:27017/expansion_docs
-      - REDIS_URL=redis://redis:6379
-    depends_on:
-      - mysql
-      - mongodb
-      - redis
-    volumes:
-      - ./uploads:/app/uploads
-
-  mysql:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: expansion_db
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-
-  mongodb:
-    image: mongo:5.0
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
-
-  redis:
-    image: redis:6.2-alpine
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-
-volumes:
-  mysql_data:
-  mongodb_data:
-  redis_data:
-```
-
----
-
-## 🚀 Deployment
-
-### Render
-
-1. Connect your GitHub repository
-2. Set environment variables in Render dashboard
-3. Deploy with Docker
-
-### Railway
-
-```bash
-railway login
-railway link
-railway up
-```
 
 ### AWS Free Tier
 
@@ -572,25 +474,3 @@ curl -X POST http://localhost:3000/api/v1/matching/generate/PROJECT_ID \
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-
-## 📞 Support
-
-- **Author**: [Your Name](https://github.com/your-username)
-- **Website**: [https://expander360.com](https://expander360.com)
-- **Email**: [support@expander360.com](mailto:support@expander360.com)
-- **Documentation**: [API Docs](https://your-api-docs.com)
-
----
-
-## 🙏 Acknowledgments
-
-- [NestJS](https://nestjs.com/) - Progressive Node.js framework
-- [TypeORM](https://typeorm.io/) - Amazing ORM for TypeScript
-- [Mongoose](https://mongoosejs.com/) - MongoDB object modeling
-- [BullMQ](https://bullmq.io/) - Premium Queue package
-
----
-
-<p align="center">
-  Made with ❤️ for global expansion
-</p>
