@@ -85,7 +85,6 @@ Check out a few resources that may come in handy when working with NestJS:
 - Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
 ## **📌 Features**
-
 - 🔐 **JWT Authentication & RBAC** → Roles: `client` & `admin`
 - 🗄 **Relational + Non-Relational DB Integration** → MySQL + MongoDB
 - 📁 **Research Document Management** → Upload, search, and fetch reports
@@ -98,58 +97,61 @@ Check out a few resources that may come in handy when working with NestJS:
 
 ---
 
+
 erDiagram
-CLIENTS {
-int id PK
-string company_name
-string contact_email
-}
+      CLIENTS {
+          int id PK
+          string company_name
+          string contact_email
+      }
 
-    PROJECTS {
-        int id PK
-        int client_id FK
-        string country
-        string[] services_needed
-        decimal budget
-        enum status
-    }
+      PROJECTS {
+          int id PK
+          int client_id FK
+          string country
+          string[] services_needed
+          decimal budget
+          enum status
+      }
 
-    VENDORS {
-        int id PK
-        string name
-        string[] countries_supported
-        string[] services_offered
-        decimal rating
-        int response_sla_hours
-    }
+      VENDORS {
+          int id PK
+          string name
+          string[] countries_supported
+          string[] services_offered
+          decimal rating
+          int response_sla_hours
+      }
 
-    MATCHES {
-        int id PK
-        int project_id FK
-        int vendor_id FK
-        decimal score
-        datetime created_at
-    }
+      MATCHES {
+          int id PK
+          int project_id FK
+          int vendor_id FK
+          decimal score
+          datetime created_at
+      }
 
-    CLIENTS ||--o{ PROJECTS : owns
-    PROJECTS ||--o{ MATCHES : "has"
-    VENDORS ||--o{ MATCHES : "matches"
+      CLIENTS ||--o{ PROJECTS : owns
+      PROJECTS ||--o{ MATCHES : has
+      VENDORS ||--o{ MATCHES : matches
+
+
+
 
 ## **🛠 Tech Stack**
 
-| Layer          | Technology                |
-| -------------- | ------------------------- |
-| Framework      | NestJS (TypeScript)       |
-| Auth           | JWT + Role Guards         |
-| Relational DB  | MySQL (TypeORM)           |
-| NoSQL DB       | MongoDB (Mongoose)        |
-| Cache / Queues | Redis + BullMQ            |
-| File Storage   | MongoDB GridFS            |
-| Scheduling     | NestJS Scheduler / BullMQ |
-| Deployment     | Docker + Docker Compose   |
+| Layer        | Technology |
+|-------------|-----------|
+| Framework   | NestJS (TypeScript) |
+| Auth        | JWT + Role Guards |
+| Relational DB | MySQL (TypeORM) |
+| NoSQL DB    | MongoDB (Mongoose) |
+| Cache / Queues | Redis + BullMQ |
+| File Storage | MongoDB GridFS |
+| Scheduling  | NestJS Scheduler / BullMQ |
+| Deployment  | Docker + Docker Compose |
 
 ---
-
 ### 🔍 Database Indexing
 
 To optimize vendor matching queries, make sure to create proper indexes
