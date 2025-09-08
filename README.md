@@ -27,28 +27,37 @@ docker-compose exec api npm run seed
 ### 📋 Manual Setup
 
 bash
-
 # 1. Install dependencies
 
+```bash
 npm install
+```
 
 # 5. Start the development server
 
+```bash
 npm run start:dev
---- ## 📂 Project Structure
+```
+
+---
+
+## 📂 Project Structure
+
+```
 src/
-├── admin /#ceating vevndors
-├── auth/ # Authentication module
-├── users/ # User management
-├── clients/ # Client profiles
-├── projects/ # Project management
-├── vendors/ # Vendor management
-├── matches/ # Vendor matching algorithm
-├── documents/ # Document management (MongoDB)
-├── email/ # Email notifications
-├── schudler/ # Scheduled jobs (BullMQ)
-├── common/ # Shared utilities
-└── database/ # Database configuration
+├── admin/        # Creating vendors
+├── auth/         # Authentication module
+├── users/        # User management
+├── clients/      # Client profiles
+├── projects/     # Project management
+├── vendors/      # Vendor management
+├── matches/      # Vendor matching algorithm
+├── documents/    # Document management (MongoDB)
+├── email/        # Email notifications
+├── scheduler/    # Scheduled jobs (BullMQ)
+├── common/       # Shared utilities
+└── database/     # Database configuration
+```
 
 ```mermaid
 erDiagram
