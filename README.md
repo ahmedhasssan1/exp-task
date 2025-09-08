@@ -1,6 +1,17 @@
-p align="center"> <a href="http://nestjs.com/" target="blank"> <img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /> </a> </p> <p align="center"> A progressive <strong>NestJS-based backend</strong> designed for <strong>Expander360</strong>, a platform that helps businesses manage global expansion projects. The system connects clients, vendors, projects, unstructured research documents, and analytics across MySQL and MongoDB. </p> <p align="center"> <a href="https://www.npmjs.com/~nestjscore" target="_blank"> <img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /> </a> <a href="https://www.npmjs.com/~nestjscore" target="_blank"> <img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /> </a> <a href="https://discord.gg/G7Qnnhy" target="_blank"> <img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/> </a> <img src="https://img.shields.io/badge/Status-Production%20Ready-green.svg" alt="Production Ready" /> </p> --- ## 📌 Features - 🔐 **JWT Authentication & RBAC** → Roles: client & admin - 🗄 **Relational + Non-Relational DB Integration** → MySQL + MongoDB - 📁 **Research Document Management** → Upload, search, and fetch reports - 🤝 **Project-Vendor Matching Algorithm** → Based on country, services, rating, and SLA - 📊 **Analytics API** → Combines MySQL + MongoDB insights - 📬 **Email Notifications** → When new matches are generated - ⏳ **Scheduled Jobs** → Auto-refresh matches & flag expired SLAs - 🐳 **Dockerized Setup** → MySQL, MongoDB, Redis, and API containers - 🚀 **Cloud Ready** → Deploy to **Render**, **Railway**, or **AWS Free Tier** --- ## 🛠 Tech Stack | Layer | Technology | |-------------|-----------| | Framework | NestJS (TypeScript) | | Auth | JWT + Role Guards | | Relational DB | MySQL (TypeORM) | | NoSQL DB | MongoDB (Mongoose) | | Cache / Queues | Redis + BullMQ | | File Storage | MongoDB GridFS | | Scheduling | NestJS Scheduler / BullMQ | | Deployment | Docker + Docker Compose | --- ## 🚀 Quick Start ### Prerequisites - Node.js (v18 or higher) - Docker & Docker Compose (recommended) - MySQL (v8 or higher) - MongoDB (v5 or higher) - Redis (v6 or higher) ### 🐳 Docker Setup (Recommended)
-bash
+p align="center"> <a href="http://nestjs.com/" target="blank"> <img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /> </a> </p> <p align="center"> A progressive <strong>NestJS-based backend</strong> designed for <strong>Expander360</strong>, a platform that helps businesses manage global expansion projects. The system connects clients, vendors, projects, unstructured research documents, and analytics across MySQL and MongoDB. </p> <p align="center"> <a href="https://www.npmjs.com/~nestjscore" target="_blank"> <img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /> </a> <a href="https://www.npmjs.com/~nestjscore" target="_blank"> <img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /> </a> <a href="https://discord.gg/G7Qnnhy" target="_blank"> <img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/> </a> <img src="https://img.shields.io/badge/Status-Production%20Ready-green.svg" alt="Production Ready" /> </p> --- ## 📌 Features - 🔐 **JWT Authentication & RBAC** → Roles: client & admin - 🗄 **Relational + Non-Relational DB Integration** → MySQL + MongoDB - 📁 **Research Document Management** → Upload, search, and fetch reports - 🤝 **Project-Vendor Matching Algorithm** → Based on country, services, rating, and SLA - 📊 **Analytics API** → Combines MySQL + MongoDB insights - 📬 **Email Notifications** → When new matches are generated - ⏳ **Scheduled Jobs** → Auto-refresh matches & flag expired SLAs - 🐳 **Dockerized Setup** → MySQL, MongoDB, Redis, and API containers - 🚀
 
+## 🚀 🛠 Tech Stack
+
+| Layer         | Technology              |
+| ------------- | ----------------------- |
+| Framework     | NestJS (TypeScript)     |
+| Auth          | JWT + Role Guards       |
+| Relational DB | MySQL (TypeORM)         |
+| NoSQL DB      | MongoDB (Mongoose)      |
+| Cache/Queues  | Redis + BullMQ          |
+| File Storage  | MongoDB GridFS          |
+| Scheduling    | NestJS Scheduler/BullMQ |
+| Deployment    | Docker + Docker Compose |
 
 # 3. Start all services
 
@@ -20,7 +31,6 @@ bash
 # 1. Install dependencies
 
 npm install
-
 
 # 5. Start the development server
 
@@ -55,7 +65,7 @@ erDiagram
     string company_name
     string email
     string country
-  
+
   }
   Projects {
     string id PK
@@ -92,22 +102,15 @@ erDiagram
   Vendors ||--o{ ProjectVendorMatches : matches
 ```
 
-
-
-
-
-
-
-
-
 # Register new user
 
 curl -X POST http://localhost:3000/auth/signup \
 
-
 # Login
 
 curl -X POST http://localhost:3000/auth/login \
+
+### all other enpoints in controllers
 
 ### Project Management
 
