@@ -131,37 +131,6 @@ erDiagram
   Vendors ||--o{ ProjectVendorMatches : matches
 ```
 
-### MongoDB (Document Data)
-
-### 🔍 Database Indexing To optimize vendor matching queries, create these indexes:
-
-sql
--- MySQL Indexes
-CREATE INDEX idx*vendors_countries ON vendors(countries_served);
-CREATE INDEX idx_vendors_services ON vendors(services_offered);
-CREATE INDEX idx_vendors_rating ON vendors(rating);
-CREATE INDEX idx_projects_country ON projects(target_country);
-CREATE INDEX idx_matches_project ON project_vendor_matches(project_id);
-CREATE INDEX idx_matches_score ON project_vendor_matches(match_score DESC);
-javascript
-// MongoDB Indexes
-db.research_documents.createIndex({ "project_id": 1, "document_type": 1 });
-db.research_documents.createIndex({ "metadata.country": 1, "metadata.industry": 1 });
-db.analytics_events.createIndex({ "project_id": 1, "timestamp": -1 });
-db.analytics_events.createIndex({ "event_type": 1, "timestamp": -1 });
---- ## 📡 API Documentation ### Authentication Endpoints | Method | Endpoint | Description | Auth | |--------|----------|-------------|------| | POST | /auth/register | Register new user | ❌ | | POST | /auth/login | User login | ❌ | | POST | /auth/refresh | Refresh JWT token | ✅ | | GET | /auth/profile | Get user profile | ✅ | ### Project Management | Method | Endpoint | Description | Auth | |--------|----------|-------------|------| | GET | /projects | List user projects | ✅ | | POST | /projects | Create new project | ✅ | | GET | /projects/:id | Get project details | ✅ | | PUT | /projects/:id | Update project | ✅ | | DELETE | /projects/:id | Delete project | ✅ | ### Vendor Management | Method | Endpoint | Description | Auth | |--------|----------|-------------|------| | GET | /vendors | List all vendors | ✅ | | POST | /vendors | Add new vendor (admin) | ✅ | | GET | /vendors/:id | Get vendor details | ✅ | | PUT | /vendors/:id | Update vendor (admin) | ✅ | ### Matching System | Method | Endpoint | Description | Auth | |--------|----------|-------------|------| | POST | /matching/generate/:projectId | Generate vendor matches | ✅ | | GET | /matching/project/:projectId | Get project matches | ✅ | | PUT | /matching/:matchId/status | Update match status | ✅ | ### Document Management | Method | Endpoint | Description | Auth | |--------|----------|-------------|------| | POST | /documents/upload | Upload research document | ✅ | | GET | /documents/project/:projectId | Get project documents | ✅ | | GET | /documents/:id/download | Download document | ✅ | | POST | /documents/search | Search documents | ✅ | ### Analytics | Method | Endpoint | Description | Auth | |--------|----------|-------------|------| | GET | /analytics/dashboard | Get dashboard metrics | ✅ | | GET | /analytics/project/:projectId | Project analytics | ✅ | | GET | /analytics/vendor-performance | Vendor performance metrics | ✅ | --- ## 🤖 Vendor Matching Algorithm Our intelligent matching algorithm evaluates vendors based on multiple criteria: ### Matching Formula
-typescript
-final_score = (
-country_match * 0.35 +
-service*overlap * 0.30 +
-rating*score * 0.20 +
-sla*score * 0.15
-) \* 100
-
-### Scoring Criteria - **Country Match (35%)**: Exact match required - **Service Overlap (30%)**: Jaccard similarity coefficient - **Rating Score (20%)**: Normalized vendor rating (0-1) - **SLA Score (15%)**: Inverse time preference ### Example Calculation
-
-Project needs: Germany, [Legal, Marketing]
-Vendor offers: Germany, [Legal, Marketing, Finance]
 
 • Country: 1.0 (exact match)
 • Services: 0.67 (2/3 overlap)
@@ -235,19 +204,9 @@ railway up
 
 bash
 
-# Unit tests
 
-npm run test
 
-# Integration tests
 
-npm run test:e2e
-
-# Test coverage
-
-npm run test:cov
-
-# Watch mode
 
 npm run test:watch
 --- ## 📝 API Usage Examples ### Authentication
@@ -293,6 +252,6 @@ curl -X POST http://localhost:3000/api/v1/projects \
 
 # Generate vendor matches
 
-curl -X POST http://localhost:3000/api/v1/matching/generate/PROJECT_ID \
+curl -X POST http://localhost:3000/matching/generate/PROJECT_ID \
  -H "Authorization: Bearer YOUR_JWT_TOKEN"
 --- ## 🤝 Contributing 1. Fork the repository 2. Create a feature branch (git checkout -b feature/amazing-feature) 3. Commit your changes (git commit -m 'Add amazing feature') 4. Push to the branch (git push origin feature/amazing-feature) 5. Open a Pull Request ### Development Guidelines - Follow TypeScript best practices - Write unit tests for new features - Update documentation for API changes - Use conventional commit messages - Ensure all tests pass before submitting PR --- ## 📄 License This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. --- ## 📞 Support - **Author**: [Your Name](https://github.com/your-username) - **Website**: [https://expander360.com](https://expander360.com) - **Email**: [support@expander360.com](mailto:support@expander360.com) - **Documentation**: [API Docs](https://your-api-docs.com) --- ## 🙏 Acknowledgments - [NestJS](https://nestjs.com/) - Progressive Node.js framework - [TypeORM](https://typeorm.io/) - Amazing ORM for TypeScript - [Mongoose](https://mongoosejs.com/) - MongoDB object modeling - [BullMQ](https://bullmq.io/) - Premium Queue package --- <p align="center"> Made with ❤️ for global expansion </p>
