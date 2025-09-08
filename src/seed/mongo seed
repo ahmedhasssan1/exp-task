@@ -1,0 +1,19 @@
+// research.seed.js
+db.research.insertMany([
+  {
+    projectId: 1,
+    title: "AI Adoption Trends in MENA",
+    content: "This research explores how companies in the Middle East are adopting Artificial Intelligence solutions to improve business efficiency and scalability.",
+    tags: ["AI", "MENA", "Business", "Trends"],
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    projectId: 2,
+    title: "E-commerce Growth in Egypt",
+    content: "This document analyzes Egypt's rapid e-commerce market growth, consumer behaviors, and vendor participation in digital transformation.",
+    tags: ["E-commerce", "Egypt", "Market Analysis"],
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }
+]);
