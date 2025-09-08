@@ -241,29 +241,7 @@ erDiagram
 }
 ```
 
-### 🔍 Database Indexing
 
-To optimize vendor matching queries, create these indexes:
-
-```sql
--- MySQL Indexes
-CREATE INDEX idx_vendors_countries ON vendors(countries_served);
-CREATE INDEX idx_vendors_services ON vendors(services_offered);
-CREATE INDEX idx_vendors_rating ON vendors(rating);
-CREATE INDEX idx_projects_country ON projects(target_country);
-CREATE INDEX idx_matches_project ON project_vendor_matches(project_id);
-CREATE INDEX idx_matches_score ON project_vendor_matches(match_score DESC);
-```
-
-```javascript
-// MongoDB Indexes
-db.research_documents.createIndex({ "project_id": 1, "document_type": 1 });
-db.research_documents.createIndex({ "metadata.country": 1, "metadata.industry": 1 });
-db.analytics_events.createIndex({ "project_id": 1, "timestamp": -1 });
-db.analytics_events.createIndex({ "event_type": 1, "timestamp": -1 });
-```
-
----
 
 ## 📡 API Documentation
 
