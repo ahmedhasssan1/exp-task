@@ -32,16 +32,17 @@ dotenv.config();
     ConfigModule.forRoot({
       isGlobal:true
     }),
-  MongooseModule.forRoot(process.env.MONGO_STRING_CNNECTION as string),
+  MongooseModule.forRoot(process.env.MONGO_STRING_CONNECTION as string),
    TypeOrmModule.forRoot({
   type: 'mysql',
-  host: 'exp-task-production.up.railway.app',
+  host: process.env.DATABASE_HOST ,
   port: 3306,
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE,
   autoLoadEntities: true,
-  // synchronize: true,   
+  // synchronize: true,  
+
 }),
 
     
@@ -49,4 +50,5 @@ dotenv.config();
   controllers: [AppController],
   providers: [AppService],
 })
+
 export class AppModule {}
