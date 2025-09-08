@@ -84,28 +84,6 @@ Check out a few resources that may come in handy when working with NestJS:
 - To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
 - Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-
-
-# 🌎 Global Expansion Management API
-
-**Global Expansion Management API** is a **NestJS-based backend** designed for **Expander360**, a platform that helps businesses manage global expansion projects.  
-The system connects **clients**, **vendors**, **projects**, **unstructured research documents**, and **analytics** across **MySQL** and **MongoDB**, supporting **JWT authentication**, **vendor matching**, **cross-database analytics**, and **scheduled jobs**.
-
----
-
 ## **📌 Features**
 - 🔐 **JWT Authentication & RBAC** → Roles: `client` & `admin`
 - 🗄 **Relational + Non-Relational DB Integration** → MySQL + MongoDB
@@ -118,6 +96,47 @@ The system connects **clients**, **vendors**, **projects**, **unstructured resea
 - 🚀 **Cloud Ready** → Deploy to **Render**, **Railway**, or **AWS Free Tier**
 
 ---
+
+
+erDiagram
+    CLIENTS {
+        int id PK
+        string company_name
+        string contact_email
+    }
+
+    PROJECTS {
+        int id PK
+        int client_id FK
+        string country
+        string[] services_needed
+        decimal budget
+        enum status
+    }
+
+    VENDORS {
+        int id PK
+        string name
+        string[] countries_supported
+        string[] services_offered
+        decimal rating
+        int response_sla_hours
+    }
+
+    MATCHES {
+        int id PK
+        int project_id FK
+        int vendor_id FK
+        decimal score
+        datetime created_at
+    }
+
+    CLIENTS ||--o{ PROJECTS : owns
+    PROJECTS ||--o{ MATCHES : "has"
+    VENDORS ||--o{ MATCHES : "matches"
+
+
+
 
 ## **🛠 Tech Stack**
 
