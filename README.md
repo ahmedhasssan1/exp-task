@@ -96,8 +96,7 @@ Check out a few resources that may come in handy when working with NestJS:
 - 🚀 **Cloud Ready** → Deploy to **Render**, **Railway**, or **AWS Free Tier**
 
 ---
-
-
+```mermaid
 erDiagram
       CLIENTS {
           int id PK
@@ -134,8 +133,6 @@ erDiagram
       CLIENTS ||--o{ PROJECTS : owns
       PROJECTS ||--o{ MATCHES : has
       VENDORS ||--o{ MATCHES : matches
-
-
 
 
 ## **🛠 Tech Stack**
