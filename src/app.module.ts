@@ -24,8 +24,8 @@ dotenv.config();
     
     BullModule.forRoot('main-queue',{
       connection:{
-        host: '192.168.116.128',
-        port:Number(process.env.REDIS_PORT)  
+        host: process.env.REDIS_HOST,
+        port:6379  
       }
     }),
     ScheduleModule.forRoot(),
