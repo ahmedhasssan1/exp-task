@@ -21,7 +21,6 @@ dotenv.config();
 
 @Module({
   imports: [
-    
     BullModule.forRoot('main-queue',{
       connection:{
         host: process.env.REDIS_HOST,
