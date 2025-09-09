@@ -1,10 +1,10 @@
 import { connect, model } from 'mongoose';
-import { Research, ResearchSchema } from '../documnet/entity/docs.entity'; // ✅ Correct path to your schema
+import { Research, ResearchSchema } from '../documnet/entity/docs.entity'; 
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const MONGO_URI = process.env.MONGO_STRING_CNNECTION as string; // ✅ Load from .env
+const MONGO_URI = process.env.MONGO_STRING_CNNECTION as string; 
 
 async function seedResearch() {
   try {

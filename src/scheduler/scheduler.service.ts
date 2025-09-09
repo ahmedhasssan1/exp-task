@@ -9,7 +9,7 @@ export class SchedulerService {
 
   constructor(@InjectQueue('match-queue') private readonly matchQueue: Queue) {}
 
-  // 🕒 Runs every day at 5:26 PM Cairo time
+  //  Runs every day at 5:26 PM Cairo time
   @Cron('0 0 12 * * *', { timeZone: 'Africa/Cairo' })
   async handleDailyTask() {
     this.logger.log('⏳ Adding daily-task job to queue...');

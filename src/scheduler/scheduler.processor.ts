@@ -7,7 +7,7 @@ import { VendorService } from 'src/vendor/vendor.service';
 @Processor('match-queue')
 export class MatchesScheduler extends WorkerHost {
   private readonly logger = new Logger(MatchesScheduler.name);
-  private isRunning = false; // Prevents duplicate execution
+  private isRunning = false; 
 
   constructor(
     private readonly vendorService: VendorService,

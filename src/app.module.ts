@@ -22,6 +22,7 @@ dotenv.config();
 @Module({
   imports: [
     BullModule.forRoot('main-queue',{
+      //connecting throw linux
       connection:{
         host: process.env.REDIS_HOST,
         port:6379  

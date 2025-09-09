@@ -17,22 +17,18 @@ export class TransformInterceptor implements NestInterceptor {
     if (visited.has(obj)) return obj;
     visited.add(obj);
 
-    // Convert Mongoose documents into plain objects
     if (typeof obj.toObject === 'function') {
       obj = obj.toObject();
     }
 
-    // Convert _id to string if it's an ObjectId
     if (obj._id && typeof obj._id.toString === 'function') {
       obj = { ...obj, _id: obj._id.toString() };
     }
 
-    // Handle arrays recursively
     if (Array.isArray(obj)) {
       return obj.map((item) => this.cleanResponse(item, visited));
     }
 
-    // Create a clean object and skip unwanted fields
     const newObj: any = {};
     for (const key in obj) {
       if (key === 'password' || key === 'buffer' || key === '__v') {

@@ -27,8 +27,8 @@ export class EmailService {
    * @param email - Recipient's email address
    * @param name - Recipient's name
    * @param projectName - The project name
-   * @param vendorName - The vendor who matched
-   */
+   * @param vendorName 
+   
   async sendMatchNotification(emailDto: SendEmail): Promise<string> {
     const transporter = this.emailTransport();
 
