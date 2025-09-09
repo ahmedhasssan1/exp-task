@@ -53,6 +53,7 @@ src/
 ├── projects/     # Project management
 ├── vendors/      # Vendor management
 ├── matches/      # Vendor matching algorithm
+├── migrations     # migrations to vendor entity
 ├── documents/    # Document management (MongoDB)
 ├── email/        # Email notifications
 ├── scheduler/    # Scheduled jobs (BullMQ)
