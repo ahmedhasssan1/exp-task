@@ -55,10 +55,10 @@ export class EmailService {
 
     try {
       await transporter.sendMail(mailOptions);
-      this.logger.log(`✅ Match email sent successfully to ${emailDto.email}`);
+      this.logger.log(` Match email sent successfully to ${emailDto.email}`);
       return 'Match email sent successfully';
     } catch (error) {
-      this.logger.error(`❌ Failed to send match email: ${error.message}`);
+      this.logger.error(` Failed to send match email: ${error.message}`);
       throw error;
     }
   }

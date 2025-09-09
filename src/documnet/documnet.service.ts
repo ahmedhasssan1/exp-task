@@ -29,23 +29,22 @@ export class DocumnetService {
     await this.ProjectService.findProjectById(projectId);
     return await this.docsModel.find({ projectId: projectId }).exec();
   }
-  async addResearchDocsCount(vendors: any[]): Promise<any[]> {
+ async addResearchDocsCount(vendors: any[]) {
     return Promise.all(
       vendors.map(async (vendor) => {
-        let docsCount = 0;
+        // Extract project IDs from vendor data
+        const projectIds = vendor.project_ids
+          ? vendor.project_ids.split(',').map((id) => parseInt(id.trim()))
+          : [];
 
-        // If vendor has associated project IDs
-        if (vendor.project_ids) {
-          const projectIds = vendor.project_ids.split(',').map(Number);
-
-          docsCount = await this.docsModel.countDocuments({
-            projectId: { $in: projectIds },
-          });
-        }
+        // Count matching research documents in MongoDB
+        const researchDocsCount = await this.docsModel.countDocuments({
+          projectId: { $in: projectIds },
+        });
 
         return {
           ...vendor,
-          research_docs_count: docsCount,
+          research_docs_count: researchDocsCount,
         };
       }),
     );

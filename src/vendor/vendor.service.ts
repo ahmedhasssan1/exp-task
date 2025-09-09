@@ -65,7 +65,7 @@ export class VendorService {
     // Get top vendors from MySQL
     const topVendors = await this.matchService.vendorQuery(query, [country]);
 
-    return this.docsService.addResearchDocsCount([topVendors]);
+    return this.docsService.addResearchDocsCount(topVendors);
   }
 
   async getAllVendors(): Promise<Vendor[]> {
