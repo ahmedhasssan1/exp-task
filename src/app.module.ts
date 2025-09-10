@@ -49,6 +49,7 @@ dotenv.config();
       database: process.env.DATABASE,
       autoLoadEntities: true,
       synchronize: true,
+
     }),
 
     AdminModule,
