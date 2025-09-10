@@ -72,7 +72,8 @@ src/
 └── database/     # Database configuration
 ```
 
-```mermaid
+```
+mermaid
 erDiagram
   Users {
     string id PK
