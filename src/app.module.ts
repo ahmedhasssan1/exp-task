@@ -28,33 +28,41 @@ dotenv.config();
 
 @Module({
   imports: [
-    BullModule.forRoot('main-queue',{
+    BullModule.forRoot('main-queue', {
       //connecting throw linux
-      connection:{
+      connection: {
         host: process.env.REDIS_HOST,
-        port:6379  
-      }
+        port: 6379,
+      },
     }),
     ScheduleModule.forRoot(),
     ConfigModule.forRoot({
-      isGlobal:true
+      isGlobal: true,
     }),
-  MongooseModule.forRoot(process.env.MONGO_STRING_CONNECTION as string),
-   TypeOrmModule.forRoot({
-  type: 'mysql',
-  host: process.env.DATABASE_HOST ,
-  port: 3306,
-  username: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE,
-  autoLoadEntities:true,
+    MongooseModule.forRoot(process.env.MONGO_STRING_CONNECTION as string),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: process.env.DATABASE_HOST,
+      port: 3306,
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE,
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
 
-}),
-
-    
-    AdminModule, VendorModule, ClientsModule, ProjectsModule, DocumnetModule, MatchesModule, AuthModule, UsersModule, EmailModule, SchedulerModule],
+    AdminModule,
+    VendorModule,
+    ClientsModule,
+    ProjectsModule,
+    DocumnetModule,
+    MatchesModule,
+    AuthModule,
+    UsersModule,
+    EmailModule,
+    SchedulerModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-
 export class AppModule {}

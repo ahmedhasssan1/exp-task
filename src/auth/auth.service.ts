@@ -34,9 +34,9 @@ export class AuthService {
     switch (role) {
       // COMMENT ADMIN ROLE BECUASE NO ONE CAN BE ADMIN
 
-      // case User_enum.admin:
-      //   await this.createAdmin(userDto, hashedPassword);
-      //   break;
+      case User_enum.admin:
+        await this.createAdmin(userDto, hashedPassword);
+        break;
 
       case User_enum.client:
         await this.createClient(userDto, hashedPassword, company_name, contact_email);
