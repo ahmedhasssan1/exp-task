@@ -48,8 +48,6 @@ dotenv.config();
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE,
   autoLoadEntities:true,
-  synchronize: false,  
-  migrationsRun:true
 
 }),
 
