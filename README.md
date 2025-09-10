@@ -44,7 +44,7 @@ npm run start:dev
 ## 🚀 Deployment
 
 You can access the live API here:  
-🔗 **[exp-task-production-f253.up.railway.app](https://exp-task-production-f253.up.railway.app)**
+🔗 **[exp-task-production-f253.up.railway.app](https://exp-task-production-f253.up.railway.app/vendor)**
 
 ---
 
