@@ -17,13 +17,7 @@ import { BullModule } from '@nestjs/bullmq';
 import { SchedulerModule } from './scheduler/scheduler.module';
 import * as dotenv from 'dotenv';
 import { ScheduleModule } from '@nestjs/schedule';
-import { Admin } from './admin/entity/admin.entity';
-import { Users } from './users/entity/users.entity';
-import { Matches } from './matches/entity/matches.entity';
-import { Vendor } from './vendor/entity/vendor.entity';
-import { Projects } from './projects/entity/projects.entity';
-import { Research } from './documnet/entity/docs.entity';
-import { Clients } from './clients/entity/clients.entity';
+
 dotenv.config();
 
 @Module({
