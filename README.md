@@ -11,7 +11,7 @@ p align="center"> <a href="http://nestjs.com/" target="blank"> <img src="https:/
 | Cache/Queues  | Redis + BullMQ          |
 | File Storage  | MongoDB GridFS          |
 | Scheduling    | NestJS Scheduler/BullMQ |
-| Deployment    | Docker + Docker Compose |
+| Deployment    | railway + Docker + Docker Compose |
 
 # 3. Start all services
 
