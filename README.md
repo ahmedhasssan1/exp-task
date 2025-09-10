@@ -73,7 +73,7 @@ src/
 ```
 
 ```
-mermaid
+```mermaid
 erDiagram
   Users {
     string id PK
