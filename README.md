@@ -2,17 +2,26 @@ p align="center"> <a href="http://nestjs.com/" target="blank"> <img src="https:/
 
 ## 🚀 🛠 Tech Stack
 
-| Layer         | Technology              |
-| ------------- | ----------------------- |
-| Framework     | NestJS (TypeScript)     |
-| Auth          | JWT + Role Guards       |
-| Relational DB | MySQL (TypeORM)         |
-| NoSQL DB      | MongoDB (Mongoose)      |
-| Cache/Queues  | Redis + BullMQ          |
-| File Storage  | MongoDB GridFS          |
-| Scheduling    | NestJS Scheduler/BullMQ |
+| Layer         | Technology                        |
+| ------------- | --------------------------------- |
+| Framework     | NestJS (TypeScript)               |
+| Auth          | JWT + Role Guards                 |
+| Relational DB | MySQL (TypeORM)                   |
+| NoSQL DB      | MongoDB (Mongoose)                |
+| Cache/Queues  | Redis + BullMQ                    |
+| File Storage  | MongoDB GridFS                    |
+| Scheduling    | NestJS Scheduler/BullMQ           |
 | Deployment    | railway + Docker + Docker Compose |
 
+```
+## 🚀 Deployment
+
+| Description          | URL                                                                                                              |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Base URL**         | [https://exp-task-production-f253.up.railway.app](https://exp-task-production-f253.up.railway.app)               |
+| **Example Endpoint** | [https://exp-task-production-f253.up.railway.app/vendor](https://exp-task-production-f253.up.railway.app/vendor) |
+
+```
 # 3. Start all services
 
 docker-compose up -d
@@ -39,15 +48,6 @@ npm install
 ```bash
 npm run start:dev
 ```
-
-
-## 🚀 Deployment
-
-| Description         | URL |
-|---------------------|---------------------------------------------------------------|
-| **Base URL**        | [https://exp-task-production-f253.up.railway.app](https://exp-task-production-f253.up.railway.app) |
-| **Example Endpoint**| [https://exp-task-production-f253.up.railway.app/vendor](https://exp-task-production-f253.up.railway.app/vendor) |
-
 
 ---
 
@@ -150,7 +150,6 @@ npx ts-node src/seed/mongo-seed.ts
 
 curl -X POST http://localhost:3000/:id/matches/rebuild \
 
-
 ## 🤝 Contributing
 
 We welcome contributions to enhance this project! Please follow these steps:
@@ -163,10 +162,10 @@ We welcome contributions to enhance this project! Please follow these steps:
 
 ### Development Standards
 
-*   Adhere to **TypeScript best practices** for code quality and maintainability.
-*   Maintain up-to-date **documentation** for any API modifications.
-*   Use **conventional commit messages** for clarity and automation.
-*   Ensure **all tests pass** before submitting a pull request.
+- Adhere to **TypeScript best practices** for code quality and maintainability.
+- Maintain up-to-date **documentation** for any API modifications.
+- Use **conventional commit messages** for clarity and automation.
+- Ensure **all tests pass** before submitting a pull request.
 
 ---
 
@@ -174,9 +173,9 @@ We welcome contributions to enhance this project! Please follow these steps:
 
 We extend our sincere gratitude to the following projects and communities that have made this project possible:
 
-*   **NestJS:** A progressive Node.js framework for building efficient, scalable, and reliable server-side applications.
-*   **TypeORM:** An Object-Relational Mapper (ORM) for TypeScript and JavaScript that simplifies database interactions.
-*   **Mongoose:** An elegant MongoDB object modeling tool designed to work in an asynchronous environment.
-*   **BullMQ:** A robust and efficient queue system for Node.js, providing advanced features for background processing.
+- **NestJS:** A progressive Node.js framework for building efficient, scalable, and reliable server-side applications.
+- **TypeORM:** An Object-Relational Mapper (ORM) for TypeScript and JavaScript that simplifies database interactions.
+- **Mongoose:** An elegant MongoDB object modeling tool designed to work in an asynchronous environment.
+- **BullMQ:** A robust and efficient queue system for Node.js, providing advanced features for background processing.
 
 ---
