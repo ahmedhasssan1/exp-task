@@ -26,8 +26,9 @@ dotenv.config();
       //connecting throw linux
       connection: {
         host: process.env.REDIS_HOST,
-        port: 6379,
-        password:process.env.REDIS_PASSWORD
+        port: Number(process.env.REDIS_PORT),
+        username: process.env.REDIS_USERNAME,
+        password: process.env.REDIS_PASSWORD,
       },
     }),
     ScheduleModule.forRoot(),
@@ -38,12 +39,12 @@ dotenv.config();
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DATABASE_HOST,
-      port: Number (process.env.DATABASE_PORT)||48723,
+      port: Number(process.env.DATABASE_PORT) || 48723,
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
-      // synchronize: true,
+      synchronize: true,
     }),
 
     AdminModule,
