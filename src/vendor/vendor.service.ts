@@ -54,7 +54,7 @@ export class VendorService {
           ROUND(AVG(m.score), 2) AS avg_score,
           GROUP_CONCAT(DISTINCT m.project_id) AS project_ids
       FROM Matches m
-      INNER JOIN vendor v ON v.id = m.vendor_id
+      INNER JOIN Vendor v ON v.id = m.vendor_id
       WHERE FIND_IN_SET(?, v.countries_supported)
         AND m.create_at >= NOW() - INTERVAL 30 DAY
       GROUP BY v.id, v.name
