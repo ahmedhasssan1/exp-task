@@ -72,7 +72,6 @@ src/
 └── database/     # Database configuration
 ```
 
-```
 ```mermaid
 erDiagram
   Users {
