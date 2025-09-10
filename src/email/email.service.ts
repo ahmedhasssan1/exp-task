@@ -27,13 +27,13 @@ export class EmailService {
    * @param email - Recipient's email address
    * @param name - Recipient's name
    * @param projectName - The project name
-   * @param vendorName 
-   
+   * @param vendorName
+   **/
   async sendMatchNotification(emailDto: SendEmail): Promise<string> {
     const transporter = this.emailTransport();
 
     const mailOptions: nodemailer.SendMailOptions = {
-      from: `"${this.configService.get<string>(  'Match System')}" <${this.configService.get<string>('emailUser')}>`,
+      from: `"${this.configService.get<string>('Match System')}" <${this.configService.get<string>('emailUser')}>`,
       to: emailDto.email,
       subject: '🎉 New Match Found for Your Project!',
       html: `
@@ -58,7 +58,7 @@ export class EmailService {
       this.logger.log(` Match email sent successfully to ${emailDto.email}`);
       return 'Match email sent successfully';
     } catch (error) {
-      this.logger.error(` Failed to send match email: ${error.message}`);
+      this.logger.error(` Failed to  send match email: ${error.message}`);
       throw error;
     }
   }
