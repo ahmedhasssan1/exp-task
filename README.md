@@ -29,9 +29,9 @@ p align="center"> <a href="http://nestjs.com/" target="blank"> <img src="https:/
 ```
 
 # 3. Start all services
-
+```
 docker-compose up -d
-
+```
 # 4. Run database migrations
 ```
 docker-compose exec api npm run migration:run
