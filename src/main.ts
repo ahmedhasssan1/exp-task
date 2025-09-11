@@ -13,8 +13,8 @@ async function bootstrap() {
   const Port=process.env.PORT
   app.use(cookieParser())
   app.enableCors({
-  origin: 'http://localhost:3000',  // your frontend URL
-  credentials: true,
+    origin:true,
+    credentials: true,
 });
   await app.listen( Port||3000,()=>console.log(`app running on port ${Port}`));
 }
