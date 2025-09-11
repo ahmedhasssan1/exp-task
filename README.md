@@ -183,7 +183,7 @@ We extend our sincere gratitude to the following projects and communities that h
 - **NestJS:** A progressive Node.js framework for building efficient, scalable, and reliable server-side applications.
 - **TypeORM:** An Object-Relational Mapper (ORM) for TypeScript and JavaScript that simplifies database interactions.
 - **mysql** A popular open-source relational database management system used for storing and managing structured data efficiently
--**redis** An in-memory data structure store, used as a database, cache, and message broker for fast and efficient data handling
+- **redis** An in-memory data structure store, used as a database, cache, and message broker for fast and efficient data handling
 - **Mongoose:** An elegant MongoDB object modeling tool designed to work in an asynchronous environment.
 - **BullMQ:** A robust and efficient queue system for Node.js, providing advanced features for background processing.
 
