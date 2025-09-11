@@ -159,7 +159,7 @@ npx ts-node src/seed/mongo-seed.ts
 
 # Generate vendor matches
 
-curl -X POST http://localhost:3000/:id/matches/rebuild \
+ POST http://localhost:3000/:id/matches/rebuild
 
 ## 🤝 Contributing
 
