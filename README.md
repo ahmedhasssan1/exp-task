@@ -140,15 +140,16 @@ erDiagram
   POST http://localhost:3000/auth/login \
 ```
 
-### all other endpoints in controllers
+
 
 ### Project Management
 
-bash
-
 # Create project
-
+```
 curl -X POST http://localhost:3000/projects/create-projects \
+```
+
+### all other endpoints in controllers
 
 ### to run mongo-seed script
 
