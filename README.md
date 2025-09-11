@@ -131,13 +131,13 @@ erDiagram
 # Register new user
 
 ```
- POST http://localhost:3000/auth/signup \
+ POST http://localhost:3000/auth/signup 
 ```
 
 # Login
 
 ```
-  POST http://localhost:3000/auth/login \
+  POST http://localhost:3000/auth/login 
 ```
 
 
@@ -146,7 +146,7 @@ erDiagram
 
 # Create project
 ```
-curl -X POST http://localhost:3000/projects/create-projects \
+ POST http://localhost:3000/projects/create-projects 
 ```
 
 ### all other endpoints in controllers
