@@ -33,9 +33,9 @@ p align="center"> <a href="http://nestjs.com/" target="blank"> <img src="https:/
 docker-compose up -d
 
 # 4. Run database migrations
-
+```
 docker-compose exec api npm run migration:run
-
+```
 # 5. API will be available at http://localhost:3000
 
 ### 📋 Manual Setup
