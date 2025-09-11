@@ -127,13 +127,15 @@ erDiagram
 # Register new user
 
 curl -X POST http://localhost:3000/auth/signup \
-
+```
+```
 # Login
 
 curl -X POST http://localhost:3000/auth/login \
+```
 
 ### all other endpoints in controllers
-
+```
 ### Project Management
 
 bash

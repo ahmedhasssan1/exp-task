@@ -29,7 +29,7 @@ export class DocumnetService {
     await this.ProjectService.findProjectById(projectId);
     return await this.docsModel.find({ projectId: projectId }).exec();
   }
- async addResearchDocsCount(vendors: any[]) {
+  async addResearchDocsCount(vendors: any[]) {
     return Promise.all(
       vendors.map(async (vendor) => {
         // Extract project IDs from vendor data
