@@ -14,7 +14,9 @@ p align="center"> <a href="http://nestjs.com/" target="blank"> <img src="https:/
 | Deployment    | railway + Docker + Docker Compose |
 
 ```
+
 ```
+
 ## 🚀 Deployment
 
 | Description          | URL                                                                                                              |
@@ -23,7 +25,9 @@ p align="center"> <a href="http://nestjs.com/" target="blank"> <img src="https:/
 | **Example Endpoint** | [https://exp-task-production-f253.up.railway.app/vendor](https://exp-task-production-f253.up.railway.app/vendor) |
 
 ```
+
 ```
+
 # 3. Start all services
 
 docker-compose up -d
@@ -126,11 +130,15 @@ erDiagram
 
 # Register new user
 
-curl -X POST http://localhost:3000/auth/signup \
+```
+ POST http://localhost:3000/auth/signup \
+```
 
 # Login
 
-curl -X POST http://localhost:3000/auth/login \
+```
+  POST http://localhost:3000/auth/login \
+```
 
 ### all other endpoints in controllers
 
