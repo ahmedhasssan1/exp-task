@@ -17,13 +17,15 @@ export class DocumnetService {
     return new_document.save();
   }
   async searchDocuments(query: string): Promise<Research[]> {
-    return this.docsModel.find({
-      $or: [
-        { title: { $regex: query, $options: 'i' } },
-        { content: { $regex: query, $options: 'i' } },
-        { tags: { $regex: query, $options: 'i' } },
-      ],
-    });
+    return this.docsModel
+      .find({
+        $or: [
+          { title: { $regex: query, $options: 'i' } },
+          { content: { $regex: query, $options: 'i' } },
+          { tags: { $regex: query, $options: 'i' } },
+        ],
+      })
+      .lean();
   }
   async getByProject(projectId: number): Promise<Research[]> {
     await this.ProjectService.findProjectById(projectId);
