@@ -24,9 +24,6 @@ p align="center"> <a href="http://nestjs.com/" target="blank"> <img src="https:/
 | **Base URL**         | [https://exp-task-production-f253.up.railway.app](https://exp-task-production-f253.up.railway.app)               |
 | **Example Endpoint** | [https://exp-task-production-f253.up.railway.app/vendor](https://exp-task-production-f253.up.railway.app/vendor) |
 
-```
-
-```
 
 # 3. Start all services
 ```
